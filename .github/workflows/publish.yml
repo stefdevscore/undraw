@@ -8,7 +8,6 @@ jobs:
   # 1. Publish to NPM (Node.js)
   publish-npm:
     runs-on: ubuntu-latest
-    environment: npm
     permissions:
       id-token: write      # Required for OIDC
       contents: read
@@ -17,7 +16,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-          registry-url: 'https://registry.npmjs.org'
       - run: npm install
         working-directory: ./wrapper-js
       - run: npm publish --provenance --access public
