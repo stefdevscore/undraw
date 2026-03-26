@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "undraw-py"
-version = "1.0.23"
+version = "1.0.24"
 description = "A minimalist CLI for unDraw illustrations (Python port)"
 readme = "README.md"
 license = { text = "Unlicense" }
