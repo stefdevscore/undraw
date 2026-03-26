@@ -16,10 +16,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
       - run: npm install
         working-directory: ./wrapper-js
-      - run: npm publish --provenance --access public
-        working-directory: ./wrapper-js
+      - name: Publish from root for git provenance
+        run: npm publish ./wrapper-js --provenance --access public
 
   # 2. Publish to PyPI (Python)
   publish-pypi:
