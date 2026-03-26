@@ -4,10 +4,12 @@ build-backend = "hatchling.build"
 
 [project]
 name = "undraw-py"
-version = "1.0.1"
+version = "1.0.2"
 description = "A minimalist CLI for unDraw illustrations (Python port)"
 readme = "README.md"
 license = { text = "Unlicense" }
+repository = "https://github.com/stefdevscore/undraw"
+homepage = "https://github.com/stefdevscore/undraw"
 requires-python = ">=3.10"
 authors = [
     { name = "azk", email = "you@example.com" },
