@@ -668,8 +668,8 @@ dependencies = [
 ]
 
 [[package]]
-name = "undraw"
-version = "0.1.0"
+name = "undraw-rs"
+version = "1.0.4"
 dependencies = [
  "base64 0.21.7",
  "clap",

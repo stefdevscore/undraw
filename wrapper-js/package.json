@@ -34,7 +34,11 @@
   "license": "Unlicense",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stefdevscore/undraw.git"
+    "url": "git+https://github.com/stefdevscore/undraw.git",
+    "directory": "wrapper-js"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "homepage": "https://github.com/stefdevscore/undraw#readme",
   "bugs": {
