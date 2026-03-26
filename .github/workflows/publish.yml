@@ -21,8 +21,6 @@ jobs:
         working-directory: ./wrapper-js
       - run: npm publish --provenance --access public
         working-directory: ./wrapper-js
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # Note: OIDC handles this if "Trusted Publisher" is set
 
   # 2. Publish to PyPI (Python)
   publish-pypi:
