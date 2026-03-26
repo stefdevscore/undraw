@@ -20,8 +20,8 @@ jobs:
           node-version: '20'
       - run: npm install
         working-directory: ./wrapper-js
-      - name: Publish from root for git provenance
-        run: npm publish ./wrapper-js --provenance --access public
+      - name: Diagnostic Publish (OIDC without provenance)
+        run: npm publish ./wrapper-js --access public
 
   # 2. Publish to PyPI (Python)
   publish-pypi:
