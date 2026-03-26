@@ -1,6 +1,6 @@
 {
   "name": "undraw-cli",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "A CLI to search, customize, and download illustrations from undraw.co",
   "type": "module",
   "main": "./dist/index.js",
@@ -34,7 +34,7 @@
   "license": "Unlicense",
   "repository": {
     "type": "git",
-    "url": "https://github.com/stefdevscore/undraw",
+    "url": "git+https://github.com/stefdevscore/undraw.git",
     "directory": "wrapper-js"
   },
   "publishConfig": {
