@@ -6,15 +6,13 @@ describe('unDraw CLI', () => {
     const output = execSync('node dist/index.js --help').toString();
     expect(output).toContain('Usage: undraw [options] [command]');
     expect(output).toContain('sync');
-    expect(output).toContain('search');
     expect(output).toContain('list');
     expect(output).toContain('download');
   });
 
-  it('should search for illustrations (requires inventory)', () => {
-    // This assumes 'undraw sync' has been run during the audit
-    const output = execSync('node dist/index.js search astronomy').toString();
-    expect(output).toContain('Found 1 matches');
+  it('should list/search for illustrations (requires inventory)', () => {
+    const output = execSync('node dist/index.js list astronomy').toString();
+    expect(output).toContain('Search: astronomy');
     expect(output).toContain('astronomy_ied1');
   });
 });
