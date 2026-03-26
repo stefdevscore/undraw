@@ -1,0 +1,59 @@
+name: Publish OSS Suite
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  # 1. Publish to NPM (Node.js)
+  publish-npm:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write      # Required for OIDC
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - run: npm install
+        working-directory: ./wrapper-js
+      - run: npm publish --provenance --access public
+        working-directory: ./wrapper-js
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # Note: OIDC handles this if "Trusted Publisher" is set
+
+  # 2. Publish to PyPI (Python)
+  publish-pypi:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write      # Required for OIDC
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Build and Publish
+        run: |
+          pip install build
+          python -m build
+        working-directory: ./wrapper-py
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: ./wrapper-py/dist/
+
+  # 3. Publish to Cargo (Rust)
+  publish-cargo:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write      # Required for OIDC
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Authenticate with crates.io
+        uses: rust-lang/crates-io-auth-action@v1
+      - name: Publish
+        run: cargo publish
+        working-directory: ./core-rs
