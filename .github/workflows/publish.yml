@@ -8,7 +8,6 @@ jobs:
   # 1. Publish to NPM (Node.js)
   publish-npm:
     runs-on: ubuntu-latest
-    environment: npm
     permissions:
       id-token: write      # Required for OIDC
       contents: read
@@ -20,11 +19,6 @@ jobs:
         with:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
-      - name: Diagnostic Info
-        run: |
-          echo "Package: undraw-cli"
-          cat ./wrapper-js/package.json | grep version
-          git status
       - run: npm install
         working-directory: ./wrapper-js
       - name: Publish from directory
@@ -54,7 +48,6 @@ jobs:
   # 3. Publish to Cargo (Rust)
   publish-cargo:
     runs-on: ubuntu-latest
-    environment: cargo
     permissions:
       id-token: write      # Required for OIDC
     steps:
