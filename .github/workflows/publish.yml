@@ -8,6 +8,7 @@ jobs:
   # 1. Publish to NPM (Node.js)
   publish-npm:
     runs-on: ubuntu-latest
+    environment: npm
     permissions:
       id-token: write      # Required for OIDC
       contents: read
@@ -53,6 +54,7 @@ jobs:
   # 3. Publish to Cargo (Rust)
   publish-cargo:
     runs-on: ubuntu-latest
+    environment: cargo
     permissions:
       id-token: write      # Required for OIDC
     steps:
