@@ -20,12 +20,8 @@ jobs:
           node-version: '20'
       - run: npm install
         working-directory: ./wrapper-js
-      - name: Publish to NPM
-        uses: JS-DevTools/npm-publish@v3
-        with:
-          package: ./wrapper-js/package.json
-          access: public
-          provenance: true
+      - name: Publish from root for git provenance
+        run: npm publish ./wrapper-js --provenance --access public
 
   # 2. Publish to PyPI (Python)
   publish-pypi:
