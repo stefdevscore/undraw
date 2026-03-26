@@ -36,5 +36,5 @@ undraw download astronomy
 - **SLSA Provenance**: Verifiable build chain for the NPM package.
 
 ## ⚖️ License
-Licensed under the [MIT License](LICENSE). 
-Built with ❤️ for the Multi-Ecosystem developer.
+Licensed under the [Unlicense](LICENSE). 
+Dedicated to the Public Domain.

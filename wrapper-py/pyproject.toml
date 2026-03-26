@@ -7,7 +7,7 @@ name = "undraw-py"
 version = "0.1.0"
 description = "A minimalist CLI for unDraw illustrations (Python port)"
 readme = "README.md"
-license = "MIT"
+license = { text = "Unlicense" }
 requires-python = ">=3.10"
 authors = [
     { name = "azk", email = "you@example.com" },
