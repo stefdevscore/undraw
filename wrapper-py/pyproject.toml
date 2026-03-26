@@ -1,0 +1,47 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "undraw-py"
+version = "0.1.0"
+description = "A minimalist CLI for unDraw illustrations (Python port)"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    { name = "azk", email = "you@example.com" },
+]
+keywords = ["undraw", "illustrations", "svg", "cli", "agentic-ai"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Typing :: Typed",
+]
+dependencies = [
+    "click>=8.1.7",
+    "rich>=13.7.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/stefdevscore/undraw-cli"
+Repository = "https://github.com/stefdevscore/undraw-cli"
+
+[project.scripts]
+undraw = "undraw.cli:cli"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/undraw"]
+
+[tool.mypy]
+strict = true
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"

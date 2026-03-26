@@ -1,0 +1,60 @@
+{
+  "name": "undraw-cli",
+  "version": "0.4.1",
+  "description": "A CLI to search, customize, and download illustrations from undraw.co",
+  "type": "module",
+  "main": "./dist/index.js",
+  "bin": {
+    "undraw": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "sync": "node dist/index.js sync",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build",
+    "prepare": "husky"
+  },
+  "keywords": [
+    "undraw",
+    "illustrations",
+    "svg",
+    "cli",
+    "agentic-ai"
+  ],
+  "author": "azk",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stefdevscore/undraw-cli.git"
+  },
+  "homepage": "https://github.com/stefdevscore/undraw-cli#readme",
+  "bugs": {
+    "url": "https://github.com/stefdevscore/undraw-cli/issues"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.0.0",
+    "ora": "^8.0.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@types/node": "^25.5.0",
+    "eslint": "^9.39.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.2.5",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.0",
+    "typescript-eslint": "^8.57.2",
+    "vitest": "^1.4.0"
+  }
+}
