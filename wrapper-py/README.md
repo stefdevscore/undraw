@@ -2,7 +2,7 @@
 
 > A high-performance, ultra-minimalist Python CLI to search, customize, and download the entire [unDraw](https://undraw.co) library (1,650+ illustrations).
 
-This is the Python port of the original [undraw-cli](https://github.com/stefdevscore/undraw-cli).
+This is the **native Python core** of the unDraw suite, part of our Triple-Native Parity architecture.
 
 ---
 

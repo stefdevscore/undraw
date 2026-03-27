@@ -4,12 +4,11 @@ Unified, high-performance CLI and developer tools for [unDraw](https://undraw.co
 
 ---
 
-## 🚀 Triple-Core Architecture
-This project is built using the [OSS Multi-Registry Shell](https://github.com/stefdevscore/oss-template), ensuring maximum performance and zero-dependency distribution.
+This suite follows the **Triple-Native Parity** pattern: three independent, native implementations (Rust, JS, and Python) synchronized to provide identical behavior across all registries with zero binary-fetching overhead.
 
-- **`core-rs`**: The high-performance Rust engine (Crates.io: `undraw-rs`).
-- **`wrapper-js`**: Zero-dependency binary wrapper (NPM: `undraw-cli`).
-- **`wrapper-py`**: Zero-dependency CLI wrapper (PyPI: `undraw-py`).
+- **`core-rs`**: Native high-performance Rust engine (Crates.io: `undraw-rs`).
+- **`wrapper-js`**: Native zero-dependency Node.js CLI (NPM: `undraw-cli`).
+- **`wrapper-py`**: Native zero-dependency Python CLI (PyPI: `undraw-py`).
 - **`skill`**: Agent-ready skill for AI assistants (Skills.sh).
 
 ## 🛠️ Usage
