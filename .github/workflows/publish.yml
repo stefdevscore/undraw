@@ -21,10 +21,10 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: npm install
         working-directory: ./wrapper-js
-      - name: Publish to NPM (OIDC)
-        run: npm publish ./wrapper-js --provenance --access public
+      - name: Publish to NPM
+        run: npm publish ./wrapper-js --access public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Some npm versions use this as a placeholder for OIDC
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   # 2. Publish to PyPI (Python)
   publish-pypi:
