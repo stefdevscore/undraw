@@ -16,7 +16,7 @@ BASE_URL = 'https://undraw.co'
 CDN_URL = 'https://cdn.undraw.co/illustration'
 
 def fetch_url(url: str) -> bytes:
-    req = urllib.request.Request(url, headers={'User-Agent': 'undraw-py/0.1.0'})
+    req = urllib.request.Request(url, headers={'User-Agent': 'undraw-py/1.0.32'})
     with urllib.request.urlopen(req) as response:
         return response.read()
 
@@ -33,9 +33,9 @@ def fetch_page(build_id: str, page: int):
         return None
 
 @click.group()
-@click.version_option(version="0.1.0")
+@click.version_option(version="1.0.32")
 def cli():
-    """CLI for unDraw illustrations (Python port)."""
+    """CLI for unDraw illustrations."""
     pass
 
 @cli.command()
