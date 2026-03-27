@@ -6,7 +6,7 @@ We take the security of this project seriously. If you believe you have found a 
 
 **Please do not report security vulnerabilities via public GitHub issues.**
 
-Instead, please send a private report via [GitHub Security Advisories](https://github.com/stefdevscore/undraw-cli/security/advisories/new) or contact the maintainers directly.
+Instead, please send a private report via [GitHub Security Advisories](https://github.com/stefdevscore/undraw/security/advisories/new) or contact the maintainers directly.
 
 ## Supported Versions
 

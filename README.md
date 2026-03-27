@@ -19,7 +19,7 @@ undraw list
 
 ### JavaScript (NPM)
 ```bash
-npx undraw-cli search "astronomy" --color #ff0077
+npx undraw-cli list "astronomy"
 ```
 
 ### Python (PyPI)

@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "undraw-py"
-version = "1.0.37"
+version = "1.0.38"
 description = "A minimalist CLI for unDraw illustrations (Python port)"
 readme = "README.md"
 license = { text = "Unlicense" }
@@ -32,8 +32,8 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/stefdevscore/undraw-cli"
-Repository = "https://github.com/stefdevscore/undraw-cli"
+Homepage = "https://github.com/stefdevscore/undraw"
+Repository = "https://github.com/stefdevscore/undraw"
 
 [project.scripts]
 undraw = "undraw.cli:cli"

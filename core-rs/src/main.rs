@@ -1,8 +1,7 @@
 use base64::{engine::general_purpose, Engine as _};
 use clap::{Parser, Subcommand};
 use colored::*;
-use flate2::read::GzDecoder;
-use indicatif::{ProgressBar, ProgressStyle};
+use indicatif::ProgressBar;
 use regex::Regex;
 use serde_json::Value;
 use std::fs;
@@ -14,10 +13,10 @@ use inventory::load_inventory;
 
 const BASE_URL: &str = "https://undraw.co";
 const CDN_URL: &str = "https://cdn.undraw.co/illustration";
-const USER_AGENT: &str = "undraw-rs/1.0.37";
+const USER_AGENT: &str = "undraw-rs/1.0.38";
 
 #[derive(Parser)]
-#[command(author, version = "1.0.37", about = "CLI for unDraw illustrations", long_about = None)]
+#[command(author, version = "1.0.38", about = "CLI for unDraw illustrations", long_about = None)]
 struct Cli {
     #[command(subcommand)]
     command: Commands,

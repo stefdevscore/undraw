@@ -7,8 +7,8 @@ Thank you for your interest in contributing! This project follows the **oss-skil
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/stefdevscore/undraw-cli.git
-   cd undraw-cli
+   git clone https://github.com/stefdevscore/undraw.git
+   cd undraw/wrapper-js
    ```
 
 2. **Install dependencies**:

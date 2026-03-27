@@ -26,4 +26,4 @@ Below is a non-exhaustive list of planned features and research directions for t
 
 ---
 
-*Open an [Issue](https://github.com/stefdevscore/undraw-cli/issues) to suggest new ideas!*
+*Open an [Issue](https://github.com/stefdevscore/undraw/issues) to suggest new ideas!*

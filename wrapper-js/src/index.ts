@@ -32,7 +32,7 @@ const print = (items: string[][], title: string) => {
   console.log(chalk.gray('─'.repeat(50)) + '\n');
 };
 
-const VERSION = '1.0.37';
+const VERSION = '1.0.38';
 
 program.name('undraw').description('CLI for unDraw illustrations').version(VERSION);
 
