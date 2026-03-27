@@ -4,11 +4,10 @@ Unified, high-performance CLI and developer tools for [unDraw](https://undraw.co
 
 ---
 
-- **Rust**: High-performance binary for speed and efficiency (Crates.io: `undraw-rs`).
-- **JavaScript**: Zero-dependency CLI for web developers (NPM: `undraw-cli`).
-- **Python**: Minimalist CLI for data and AI workflows (PyPI: `undraw-py`).
-- **Skill**: Ready-to-use intelligence for AI assistants (Skills.sh).
-- **`skill`**: Agent-ready skill for AI assistants (Skills.sh).
+- **Rust**: High-performance binary for speed and efficiency.
+- **JavaScript**: Quick, zero-dependency tool for web developers.
+- **Python**: Minimalist script for data and AI workflows.
+- **AI Skill**: Ready-to-use intelligence for AI assistants (Skills.sh).
 
 ## 🛠️ Usage
 
