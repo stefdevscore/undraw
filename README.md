@@ -4,11 +4,10 @@ Unified, high-performance CLI and developer tools for [unDraw](https://undraw.co
 
 ---
 
-This suite follows the **Triple-Native Core** pattern: three independent, native implementations (Rust, JS, and Python) perfectly synchronized for 1:1 feature parity. This ensures **zero binary-fetching overhead** and produces ultra-lightweight packages (<50KB for JS/PY).
-
-- **`core-rs`**: Native high-performance Rust core (Crates.io: `undraw-rs`).
-- **`core-js`**: Native Node.js implementation (NPM: `undraw-cli`).
-- **`core-py`**: Native Python implementation (PyPI: `undraw-py`).
+- **Rust**: High-performance binary for speed and efficiency (Crates.io: `undraw-rs`).
+- **JavaScript**: Zero-dependency CLI for web developers (NPM: `undraw-cli`).
+- **Python**: Minimalist CLI for data and AI workflows (PyPI: `undraw-py`).
+- **Skill**: Ready-to-use intelligence for AI assistants (Skills.sh).
 - **`skill`**: Agent-ready skill for AI assistants (Skills.sh).
 
 ## 🛠️ Usage

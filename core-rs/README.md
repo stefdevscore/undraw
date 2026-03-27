@@ -2,7 +2,7 @@
 
 > A high-performance, single-binary Rust CLI to search, customize, and download the entire [unDraw](https://undraw.co) library (1,650+ illustrations).
 
-This is the **native Rust core** of the unDraw suite, part of our Triple-Native Parity architecture.
+The high-performance core of the unDraw suite.
 
 ---
 

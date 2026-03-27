@@ -13,7 +13,7 @@
 - **🎯 Zero-Dependency Networking**: Built with native Node 20 `fetch`—no external network libraries.
 - **🚀 Consolidated Search**: Search 1,650+ illustrations by keyword or browse by page using a single unified command.
 - **🎨 On-the-Fly Customization**: Automatically replace the default unDraw color with your brand's hex code.
-- **📦 Ultra-Tiny footprint**: Only **~40 KB** unpacked. Written in native Node.js (Pattern 1) to avoid complex binary downloads.
+- **📦 Ultra-Tiny footprint**: Only **~40 KB** unpacked—no large binaries or complex install steps.
 - **🤖 Agentic Ready**: Optimized for AI developers who need structured, fast access to high-quality SVG assets.
 
 ---
