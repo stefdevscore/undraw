@@ -11,7 +11,7 @@ This is the **native Python core** of the unDraw suite, part of our Triple-Nativ
 - **🎯 Zero-Dependency Networking**: Built with native `urllib.request`—no external network libraries.
 - **🚀 Consolidated Search**: Search 1,650+ illustrations by keyword or browse by page.
 - **🎨 On-the-Fly Customization**: Automatically replace the default unDraw color with your brand's hex code.
-- **📦 Ultra-Tiny footprint**: Modern Python packaging with `hatchling`.
+- **📦 Ultra-Tiny footprint**: Written in native Python (Pattern 1) to avoid binary distribution complexity.
 - **🤖 Agentic Ready**: Optimized for AI developers who need structured, fast access to high-quality SVG assets.
 
 ---
