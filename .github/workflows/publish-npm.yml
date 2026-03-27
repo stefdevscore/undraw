@@ -1,0 +1,57 @@
+name: publish-npm
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  publish-npm:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+          cache: npm
+          cache-dependency-path: ./wrapper-js/package-lock.json
+
+      - name: Detect published version
+        id: published
+        working-directory: ./wrapper-js
+        run: |
+          NAME=$(node -p "require('./package.json').name")
+          VERSION=$(node -p "require('./package.json').version")
+          echo "name=$NAME" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          if npm view "$NAME@$VERSION" version >/dev/null 2>&1; then
+            echo "already=true" >> "$GITHUB_OUTPUT"
+            echo "::notice title=npm::${NAME}@${VERSION} is already published; skipping."
+          else
+            echo "already=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install dependencies
+        if: steps.published.outputs.already != 'true'
+        run: npm ci
+        working-directory: ./wrapper-js
+        env:
+          HUSKY: '0'
+
+      - name: Build package
+        if: steps.published.outputs.already != 'true'
+        run: npm run build
+        working-directory: ./wrapper-js
+
+      - name: Publish to npm
+        if: steps.published.outputs.already != 'true'
+        run: npm publish ./wrapper-js --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
