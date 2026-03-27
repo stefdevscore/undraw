@@ -1,6 +1,6 @@
 {
   "name": "undraw-cli",
-  "version": "1.0.32",
+  "version": "1.0.33",
   "description": "A CLI to search, customize, and download illustrations from undraw.co",
   "type": "module",
   "main": "./dist/index.js",
