@@ -32,7 +32,7 @@ const print = (items: string[][], title: string) => {
   console.log(chalk.gray('─'.repeat(50)) + '\n');
 };
 
-program.name('undraw').description('CLI for unDraw illustrations').version('1.0.33');
+program.name('undraw').description('CLI for unDraw illustrations').version('1.0.34');
 
 program
   .command('sync')
