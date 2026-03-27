@@ -21,8 +21,12 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: npm install
         working-directory: ./wrapper-js
-      - name: Diagnostic Verbose Publish
-        run: npm publish ./wrapper-js --provenance --access public --verbose
+      - name: Publish to NPM (OIDC)
+        uses: JS-DevTools/npm-publish@v3
+        with:
+          package: ./wrapper-js/package.json
+          provenance: true
+          access: public
 
   # 2. Publish to PyPI (Python)
   publish-pypi:
