@@ -14,10 +14,10 @@ use inventory::load_inventory;
 
 const BASE_URL: &str = "https://undraw.co";
 const CDN_URL: &str = "https://cdn.undraw.co/illustration";
-const USER_AGENT: &str = "undraw-rs/1.0.35";
+const USER_AGENT: &str = "undraw-rs/1.0.36";
 
 #[derive(Parser)]
-#[command(author, version = "1.0.35", about = "CLI for unDraw illustrations", long_about = None)]
+#[command(author, version = "1.0.36", about = "CLI for unDraw illustrations", long_about = None)]
 struct Cli {
     #[command(subcommand)]
     command: Commands,
