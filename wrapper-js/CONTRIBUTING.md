@@ -42,4 +42,4 @@ Thank you for your interest in contributing! This project follows the **oss-skil
 
 ## License
 
-By contributing, you agree that your contributions will be licensed under the MIT License found in the LICENSE file.
+By contributing, you agree that your contributions will be licensed under **The Unlicense** found in the [LICENSE](LICENSE) file.

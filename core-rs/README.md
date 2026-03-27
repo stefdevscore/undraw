@@ -54,4 +54,4 @@ The illustrations are provided by **Katerina Limpitsouni** at [unDraw.co](https:
 ---
 
 ## ⚖️ License
-MIT
+Unlicense

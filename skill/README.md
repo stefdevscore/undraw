@@ -50,4 +50,4 @@ Original CLI idea by **stefdevscore**.
 ---
 
 ## ⚖️ License
-MIT
+Unlicense

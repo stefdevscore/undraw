@@ -1,7 +1,7 @@
 # unDraw CLI 🎭
 
 [![npm version](https://img.shields.io/npm/v/undraw-cli.svg)](https://www.npmjs.com/package/undraw-cli)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: Unlicense](https://img.shields.io/badge/License-Unlicense-blue.svg)](https://unlicense.org/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/stefdevscore/undraw-cli/blob/main/CONTRIBUTING.md)
 
 > A high-performance, ultra-minimalist CLI to search, customize, and download the entire [unDraw](https://undraw.co) library (1,650+ illustrations) for your next project.
@@ -85,4 +85,4 @@ If you love these illustrations, please visit their website and support their wo
 ---
 
 ## ⚖️ License
-MIT © [azk](https://github.com/stefdevscore)
+Unlicense
