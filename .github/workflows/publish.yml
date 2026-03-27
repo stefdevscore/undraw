@@ -19,15 +19,10 @@ jobs:
         with:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
-      - run: |
-          echo "Verifying git structure..."
-          ls -R .git | head -n 20
-          git status
-        working-directory: .
+      - run: npm install
+        working-directory: ./wrapper-js
       - name: Diagnostic Verbose Publish
-        run: |
-          cd wrapper-js
-          npm publish --provenance --access public --verbose
+        run: npm publish ./wrapper-js --provenance --access public --verbose
 
   # 2. Publish to PyPI (Python)
   publish-pypi:
