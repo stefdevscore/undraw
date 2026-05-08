@@ -45,7 +45,7 @@ const printJson = (query: string | undefined, page: number, filtered: string[][]
   );
 };
 
-const VERSION = '1.0.38';
+const VERSION = '1.0.39';
 
 program.name('undraw').description('CLI for unDraw illustrations').version(VERSION);
 

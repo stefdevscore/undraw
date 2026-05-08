@@ -669,7 +669,7 @@ dependencies = [
 
 [[package]]
 name = "undraw-rs"
-version = "1.0.38"
+version = "1.0.39"
 dependencies = [
  "base64 0.21.7",
  "clap",
