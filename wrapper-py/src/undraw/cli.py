@@ -89,21 +89,44 @@ def sync():
 @cli.command()
 @click.argument('query', required=False)
 @click.option('--page', '-p', default=1, help='Page number (20 items per page)')
-def list(query, page):
+@click.option('--json', 'json_output', is_flag=True, help='Emit machine-readable JSON')
+def list(query, page, json_output):
     """List or search illustrations."""
     inv = load_inventory()
     if not inv:
+        if json_output:
+            console.print(json.dumps({
+                "query": query,
+                "page": page,
+                "per_page": 20,
+                "total": 0,
+                "total_pages": 0,
+                "items": [],
+                "error": "inventory_not_found",
+            }))
+            return
         console.print("[yellow]Inventory not found. Run 'undraw sync' first.[/]")
         return
 
     filtered = inv
     if query:
-        query = query.lower()
-        filtered = [i for i in inv if query in i[1].lower()]
+        normalized_query = query.lower()
+        filtered = [i for i in inv if normalized_query in i[1].lower()]
 
     total_pages = (len(filtered) + 19) // 20
     start = (page - 1) * 20
     items = filtered[start:start+20]
+
+    if json_output:
+        console.print(json.dumps({
+            "query": query,
+            "page": page,
+            "per_page": 20,
+            "total": len(filtered),
+            "total_pages": total_pages,
+            "items": [{"id": id, "title": title} for id, title in items],
+        }))
+        return
 
     if not items:
         console.print("[red]No illustrations found.[/]")

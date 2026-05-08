@@ -24,6 +24,7 @@ Find the perfect illustration by searching for descriptive keywords:
 
 ```bash
 undraw list "space"
+undraw list "space" --json
 ```
 
 ### 🎨 Customization
