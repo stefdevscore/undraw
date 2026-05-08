@@ -47,6 +47,7 @@ npm install -g undraw-cli
    undraw list           # Browse by page (20 per page)
    undraw list "space"   # Search for "space"
    undraw list --page 2  # Go to page 2
+   undraw list "space" --json  # Machine-readable results
    ```
 
 2. **Download with a custom color**:
@@ -64,6 +65,7 @@ npm install -g undraw-cli
 ## 🛠️ Commands
 
 - `undraw list [query]`: Paginated browsing or keyword search.
+- `undraw list [query] --json`: Emit structured discovery results for scripts and agents.
 - `undraw download <id>`: Fetch the SVG and apply a custom hex color.
 - `undraw sync`: Crawls unDraw.co and updates the embedded source metadata.
 

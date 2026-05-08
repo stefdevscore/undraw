@@ -30,6 +30,7 @@ cargo install undraw
    undraw list           # Browse by page (20 per page)
    undraw list "space"   # Search for "space"
    undraw list --page 2  # Go to page 2
+   undraw list "space" --json  # Machine-readable results
    ```
 
 2. **Download with a custom color**:

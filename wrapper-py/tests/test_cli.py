@@ -1,6 +1,8 @@
+import json
+import unittest.mock as mock
+
 from click.testing import CliRunner
 from undraw.cli import cli
-import unittest.mock as mock
 
 def test_cli_help():
     runner = CliRunner()
@@ -14,6 +16,19 @@ def test_cli_list():
     assert result.exit_code == 0
     # Should contain some illustration names from the embedded inventory
     assert 'Page 1' in result.output
+
+def test_cli_list_json():
+    runner = CliRunner()
+    result = runner.invoke(cli, ['list', 'astronomy', '--json'])
+    assert result.exit_code == 0
+
+    payload = json.loads(result.output)
+    assert payload['query'] == 'astronomy'
+    assert payload['page'] == 1
+    assert payload['per_page'] == 20
+    assert payload['total'] >= 1
+    assert payload['total_pages'] >= 1
+    assert {'id': 'astronomy_ied1', 'title': 'Astronomy'} in payload['items']
 
 @mock.patch('undraw.cli.fetch_url')
 def test_cli_download(mock_fetch):

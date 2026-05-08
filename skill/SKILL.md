@@ -13,6 +13,7 @@ description: Comprehensive knowledge for managing unDraw illustrations via CLI (
 ### 1. Search & List
 - `undraw list` (RS) / `undraw list` (PY): Browse the library (20/page).
 - `undraw list <query>` (RS/PY): Find illustrations by keyword.
+- `undraw list <query> --json`: Return stable machine-readable discovery results with `query`, `page`, `per_page`, `total`, `total_pages`, and `items` (`id`, `title`).
 
 ### 2. Download & Customize
 - `undraw download <id> --color <hex>`: Fetch SVG and replace `#6c63ff` with `<hex>`.
@@ -23,6 +24,7 @@ description: Comprehensive knowledge for managing unDraw illustrations via CLI (
 
 ## BEST PRACTICES
 - **Naming**: Use the `newSlug` (e.g., `astronomy_ied1`) for unique identification.
+- **Agent workflows**: Prefer `undraw list <query> --json` when selecting assets programmatically.
 - **Batching**: For large-scale downloads, use a loop with the CLI rather than manual UI clicks.
 - **Consistency**: Always pass the same brand hex code across a project for visual cohesion.
 

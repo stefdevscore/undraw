@@ -32,7 +32,20 @@ const print = (items: string[][], title: string) => {
   console.log(chalk.gray('─'.repeat(50)) + '\n');
 };
 
-const VERSION = '1.0.38';
+const printJson = (query: string | undefined, page: number, filtered: string[][], items: string[][]) => {
+  console.log(
+    JSON.stringify({
+      query: query ?? null,
+      page,
+      per_page: 20,
+      total: filtered.length,
+      total_pages: Math.ceil(filtered.length / 20),
+      items: items.map(([id, title]) => ({ id, title })),
+    })
+  );
+};
+
+const VERSION = '1.0.39';
 
 program.name('undraw').description('CLI for unDraw illustrations').version(VERSION);
 
@@ -67,13 +80,30 @@ program
   .description('List/Search illustrations')
   .argument('[query]', 'search query')
   .option('-p, --page <n>', 'page', '1')
+  .option('--json', 'emit machine-readable JSON')
   .action(async (q, o) => {
     const inv = loadInv();
-    if (!inv) return console.log(chalk.yellow('Run "undraw sync" first.'));
+    if (!inv) {
+      if (o.json) {
+        return console.log(
+          JSON.stringify({
+            query: q ?? null,
+            page: parseInt(o.page, 10),
+            per_page: 20,
+            total: 0,
+            total_pages: 0,
+            items: [],
+            error: 'inventory_not_found',
+          })
+        );
+      }
+      return console.log(chalk.yellow('Run "undraw sync" first.'));
+    }
     const filtered = q ? inv.filter((i: any) => i[1].toLowerCase().includes(q.toLowerCase())) : inv;
     const p = parseInt(o.page, 10),
       start = (p - 1) * 20,
       items = filtered.slice(start, start + 20);
+    if (o.json) return printJson(q, p, filtered, items);
     print(items, q ? `Search: ${q}` : `Page ${p}/${Math.ceil(filtered.length / 20)}`);
   });
 

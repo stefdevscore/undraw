@@ -20,13 +20,24 @@ undraw list
 ### JavaScript (NPM)
 ```bash
 npx undraw-cli list "astronomy"
+npx undraw-cli list "astronomy" --json
 ```
 
 ### Python (PyPI)
 ```bash
 pip install undraw-py
 undraw download astronomy
+undraw list "astronomy" --json
 ```
+
+### Machine-readable discovery
+All CLIs support JSON output for agent and script workflows:
+
+```bash
+undraw list "dashboard" --json
+```
+
+The response includes `query`, `page`, `per_page`, `total`, `total_pages`, and `items` with stable `id` and `title` fields.
 
 ## 🔐 Security & Distribution
 - **OIDC/Trusted Publishing**: Secure, tokenless distribution via GitHub Actions.

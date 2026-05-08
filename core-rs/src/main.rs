@@ -3,6 +3,7 @@ use clap::{Parser, Subcommand};
 use colored::*;
 use indicatif::ProgressBar;
 use regex::Regex;
+use serde::Serialize;
 use serde_json::Value;
 use std::fs;
 use std::io::Read;
@@ -13,10 +14,10 @@ use inventory::load_inventory;
 
 const BASE_URL: &str = "https://undraw.co";
 const CDN_URL: &str = "https://cdn.undraw.co/illustration";
-const USER_AGENT: &str = "undraw-rs/1.0.38";
+const USER_AGENT: &str = "undraw-rs/1.0.39";
 
 #[derive(Parser)]
-#[command(author, version = "1.0.38", about = "CLI for unDraw illustrations", long_about = None)]
+#[command(author, version = "1.0.39", about = "CLI for unDraw illustrations", long_about = None)]
 struct Cli {
     #[command(subcommand)]
     command: Commands,
@@ -33,6 +34,9 @@ enum Commands {
         /// Page number (20 items per page)
         #[arg(short, long, default_value_t = 1)]
         page: usize,
+        /// Emit machine-readable JSON
+        #[arg(long)]
+        json: bool,
     },
     /// Download an SVG illustration
     Download {
@@ -45,6 +49,22 @@ enum Commands {
         #[arg(short, long, default_value = ".")]
         out: String,
     },
+}
+
+#[derive(Serialize)]
+struct ListItem {
+    id: String,
+    title: String,
+}
+
+#[derive(Serialize)]
+struct ListOutput {
+    query: Option<String>,
+    page: usize,
+    per_page: usize,
+    total: usize,
+    total_pages: usize,
+    items: Vec<ListItem>,
 }
 
 fn fetch_url(url: &str) -> Result<Vec<u8>, Box<dyn std::error::Error>> {
@@ -65,7 +85,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             println!("{}", "Syncing...".cyan());
             let html = String::from_utf8(fetch_url(BASE_URL)?)?;
             let re = Regex::new(r#""buildId":"([^"]+)""#)?;
-            let build_id = re.captures(&html)
+            let build_id = re
+                .captures(&html)
                 .and_then(|cap| cap.get(1))
                 .ok_or("Could not find buildId")?
                 .as_str();
@@ -77,20 +98,27 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 let url = if page == 1 {
                     format!("{}/_next/data/{}/illustrations.json", BASE_URL, build_id)
                 } else {
-                    format!("{}/_next/data/{}/illustrations/{}.json?page={}", BASE_URL, build_id, page, page)
+                    format!(
+                        "{}/_next/data/{}/illustrations/{}.json?page={}",
+                        BASE_URL, build_id, page, page
+                    )
                 };
 
                 let resp = fetch_url(&url);
-                if resp.is_err() { break; }
+                if resp.is_err() {
+                    break;
+                }
                 let data: Value = serde_json::from_slice(&resp?)?;
                 let imgs = data["pageProps"]["illustrations"].as_array();
-                
+
                 if let Some(imgs) = imgs {
-                    if imgs.is_empty() { break; }
+                    if imgs.is_empty() {
+                        break;
+                    }
                     for i in imgs {
                         all_items.push(vec![
                             i["newSlug"].as_str().unwrap_or("").to_string(),
-                            i["title"].as_str().unwrap_or("").to_string()
+                            i["title"].as_str().unwrap_or("").to_string(),
                         ]);
                     }
                 } else {
@@ -101,7 +129,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             println!();
 
             let json_data = serde_json::to_string(&all_items)?;
-            let mut encoder = flate2::write::GzEncoder::new(Vec::new(), flate2::Compression::default());
+            let mut encoder =
+                flate2::write::GzEncoder::new(Vec::new(), flate2::Compression::default());
             std::io::Write::write_all(&mut encoder, json_data.as_bytes())?;
             let compressed = encoder.finish()?;
             let b64 = general_purpose::STANDARD.encode(compressed);
@@ -110,30 +139,64 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             let inv_path = Path::new("src/inventory.rs");
             let content = fs::read_to_string(inv_path)?;
             let re_inv = Regex::new(r#"pub const COMPRESSED_INVENTORY: &str = "[^"]+";"#)?;
-            let new_content = re_inv.replace(&content, format!(r#"pub const COMPRESSED_INVENTORY: &str = "{}";"#, b64));
+            let new_content = re_inv.replace(
+                &content,
+                format!(r#"pub const COMPRESSED_INVENTORY: &str = "{}";"#, b64),
+            );
             fs::write(inv_path, new_content.to_string())?;
 
-            println!("{}", format!("Synced {} items. Rebuild to apply changes.", all_items.len()).green());
+            println!(
+                "{}",
+                format!(
+                    "Synced {} items. Rebuild to apply changes.",
+                    all_items.len()
+                )
+                .green()
+            );
         }
-        Commands::List { query, page } => {
+        Commands::List { query, page, json } => {
             let inv = load_inventory().ok_or("Inventory not found. Run 'sync' first.")?;
             let filtered: Vec<_> = if let Some(q) = query {
                 let q = q.to_lowercase();
-                inv.into_iter().filter(|i| i[1].to_lowercase().contains(&q)).collect()
+                inv.into_iter()
+                    .filter(|i| i[1].to_lowercase().contains(&q))
+                    .collect()
             } else {
                 inv
             };
 
             let total_pages = (filtered.len() + 19) / 20;
             let start = (page - 1) * 20;
-            let items = filtered.iter().skip(start).take(20);
+            let items: Vec<_> = filtered.iter().skip(start).take(20).collect();
+
+            if *json {
+                let output = ListOutput {
+                    query: query.clone(),
+                    page: *page,
+                    per_page: 20,
+                    total: filtered.len(),
+                    total_pages,
+                    items: items
+                        .iter()
+                        .map(|item| ListItem {
+                            id: item[0].clone(),
+                            title: item[1].clone(),
+                        })
+                        .collect(),
+                };
+                println!("{}", serde_json::to_string(&output)?);
+                return Ok(());
+            }
 
             if filtered.is_empty() {
                 println!("{}", "No illustrations found.".red());
                 return Ok(());
             }
 
-            println!("{}", format!("Page {}/{} ({} items)", page, total_pages, filtered.len()).bold());
+            println!(
+                "{}",
+                format!("Page {}/{} ({} items)", page, total_pages, filtered.len()).bold()
+            );
             println!("{:<30} {:<30}", "Title".green().bold(), "ID".cyan());
             println!("{}", "-".repeat(60));
 
