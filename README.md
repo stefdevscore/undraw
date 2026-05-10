@@ -14,13 +14,15 @@ Unified, high-performance CLI and developer tools for [unDraw](https://undraw.co
 ### Rust
 ```bash
 cargo install undraw-rs
-undraw list
+undraw-rs list
 ```
 
 ### JavaScript (NPM)
 ```bash
+npm i -g undraw-cli
 npx undraw-cli list "astronomy"
 npx undraw-cli list "astronomy" --json
+npx undraw-cli download astronomy_ied1 --json --out ./assets
 ```
 
 ### Python (PyPI)
@@ -35,9 +37,22 @@ All CLIs support JSON output for agent and script workflows:
 
 ```bash
 undraw list "dashboard" --json
+undraw download dashboard_re_3_0 --json --out ./assets
 ```
 
-The response includes `query`, `page`, `per_page`, `total`, `total_pages`, and `items` with stable `id` and `title` fields.
+`list --json` includes `schema_version`, `query`, `page`, `per_page`, `total`, `total_pages`, and `items` with stable `id`, `title`, and exact upstream `svg_url` fields.
+
+`download --json` writes the SVG and returns a manifest with `schema_version`, `id`, `title`, `svg_url`, `path`, `color`, and `bytes`.
+
+### Agent contract diagnostics
+Before release or after upstream drift, replay the live contract:
+
+```bash
+node scripts/agent-contract-check.mjs
+node scripts/agent-contract-check.mjs --human
+```
+
+The diagnostic compares live unDraw data with all embedded inventories, validates sampled `svg_url` reachability, and runs local CLI checks when builds are available.
 
 ## 🔐 Security & Distribution
 - **OIDC/Trusted Publishing**: Secure, tokenless distribution via GitHub Actions.

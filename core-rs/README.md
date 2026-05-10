@@ -20,28 +20,33 @@ The high-performance core of the unDraw suite.
 ### Installation
 
 ```bash
-cargo install undraw
+cargo install undraw-rs
 ```
 
 ### Usage
 
 1. **List or Search illustrations**:
    ```bash
-   undraw list           # Browse by page (20 per page)
-   undraw list "space"   # Search for "space"
-   undraw list --page 2  # Go to page 2
-   undraw list "space" --json  # Machine-readable results
+   undraw-rs list           # Browse by page (20 per page)
+   undraw-rs list "space"   # Search for "space"
+   undraw-rs list --page 2  # Go to page 2
+   undraw-rs list "space" --json  # Machine-readable results
    ```
 
-2. **Download with a custom color**:
+2. **Download with a custom color or JSON manifest**:
    ```bash
-   undraw download astronomy_ied1 --color #34d399
+   undraw-rs download astronomy_ied1 --color #34d399
+   undraw-rs download astronomy_ied1 --json --out ./assets
    ```
 
 3. **Sync the library**:
    ```bash
-   undraw sync
+   undraw-rs sync
    ```
+
+`list --json` responses include `schema_version`, pagination fields, and `items[].id`, `items[].title`, and `items[].svg_url`.
+
+`download --json` writes the SVG and emits a manifest with `schema_version`, `id`, `title`, `svg_url`, `path`, `color`, and `bytes`.
 
 ---
 
