@@ -50,9 +50,10 @@ npm install -g undraw-cli
    undraw list "space" --json  # Machine-readable results
    ```
 
-2. **Download with a custom color**:
+2. **Download with a custom color or JSON manifest**:
    ```bash
    undraw download astronomy_ied1 --color #34d399
+   undraw download astronomy_ied1 --json --out ./assets
    ```
 
 3. **Sync the library** (updates the embedded inventory):
@@ -66,8 +67,11 @@ npm install -g undraw-cli
 
 - `undraw list [query]`: Paginated browsing or keyword search.
 - `undraw list [query] --json`: Emit structured discovery results for scripts and agents.
-- `undraw download <id>`: Fetch the SVG and apply a custom hex color.
+- `undraw download <id>`: Fetch the SVG from the embedded `svg_url` and apply a custom hex color.
+- `undraw download <id> --json`: Write the SVG and emit a manifest with `schema_version`, `id`, `title`, `svg_url`, `path`, `color`, and `bytes`.
 - `undraw sync`: Crawls unDraw.co and updates the embedded source metadata.
+
+`list --json` responses include `schema_version`, pagination fields, and `items[].id`, `items[].title`, and `items[].svg_url`.
 
 ---
 
